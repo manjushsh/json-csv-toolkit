@@ -1,0 +1,53 @@
+# Source files
+src/
+tests/
+examples/demo.ts
+
+# Development files
+.github/
+.vscode/
+tsconfig.json
+tsconfig.dev.json
+vitest.config.ts
+.eslintrc.*
+.prettierrc*
+.editorconfig
+
+# Build artifacts
+*.tsbuildinfo
+*.map
+coverage/
+.nyc_output/
+
+# Package manager files
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Environment and config
+.env*
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# IDE files
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/

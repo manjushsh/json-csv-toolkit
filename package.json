@@ -4,23 +4,39 @@
   "description": "A TypeScript/Node.js toolkit for converting JSON data to CSV format with support for nested objects, arrays, and various data types",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "bin": {
     "json-to-csv": "dist/cli/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "pnpm run clean && tsc",
+    "build:dev": "pnpm run clean && tsc -p tsconfig.dev.json",
+    "build:watch": "tsc -p tsconfig.dev.json --watch",
+    "build:prod": "pnpm run clean && pnpm run lint && pnpm run test && tsc",
     "dev": "tsx src/index.ts",
+    "dev:cli": "tsx src/cli/index.ts",
     "start": "node dist/index.js",
+    "start:cli": "node dist/cli/index.js",
     "demo": "node examples/product_path_converter.js",
-    "test": "vitest",
-    "test:watch": "vitest --watch",
-    "test:coverage": "vitest --coverage",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:coverage:watch": "vitest --coverage --watch",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "format": "prettier --write src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\" \"examples/**/*.{js,ts}\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\" \"examples/**/*.{js,ts}\"",
+    "type-check": "tsc --noEmit",
     "clean": "rimraf dist",
-    "prepublishOnly": "pnpm run clean && pnpm run build"
+    "prepack": "pnpm run build:prod",
+    "postpack": "pnpm run clean",
+    "prepublishOnly": "pnpm run build:prod",
+    "release": "pnpm run build:prod && npm publish",
+    "release:patch": "npm version patch && pnpm run release",
+    "release:minor": "npm version minor && pnpm run release",
+    "release:major": "npm version major && pnpm run release",
+    "release:dry": "npm publish --dry-run",
+    "version": "pnpm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "json",
@@ -28,7 +44,14 @@
     "converter",
     "typescript",
     "data-transformation",
-    "cli"
+    "cli",
+    "data-processing",
+    "json-to-csv",
+    "nested-json",
+    "array-flattening",
+    "data-export",
+    "streaming",
+    "command-line-tool"
   ],
   "author": "manjushsh",
   "license": "MIT",
@@ -39,12 +62,39 @@
     "dist",
     "README.md",
     "LICENSE",
-    "examples"
+    "examples",
+    "CHANGELOG.md"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./cli": {
+      "import": "./dist/cli/index.js"
+    },
+    "./converters": {
+      "import": "./dist/converters/index.js"
+    },
+    "./types": {
+      "import": "./dist/types/index.js"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manjushsh/json-csv-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manjushsh/json-csv-toolkit/issues"
+  },
+  "homepage": "https://github.com/manjushsh/json-csv-toolkit#readme",
   "dependencies": {
     "commander": "^14.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.31.0",
     "@types/node": "^24.0.15",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",

@@ -403,6 +403,137 @@ pnpm run demo
 npx tsx examples/demo.ts
 ```
 
+## Development
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/manjushsh/json-csv-toolkit.git
+cd json-csv-toolkit
+
+# Install dependencies
+pnpm install
+
+# Configure Python environment (if needed for any tools)
+# This is optional and only needed if you plan to extend with Python scripts
+```
+
+### Build Scripts
+
+```bash
+# Development build (with source maps for debugging)
+pnpm run build:dev          # Clean and compile with source maps
+pnpm run build:watch        # Build in watch mode for development
+
+# Production build (optimized, no source maps)
+pnpm run build              # Clean and compile TypeScript (optimized)
+pnpm run build:prod         # Full production build (clean + lint + test + compile)
+
+# Development
+pnpm run dev                # Run the main index.ts file
+pnpm run dev:cli            # Run the CLI in development mode
+
+# Testing
+pnpm run test               # Run tests once
+pnpm run test:watch         # Run tests in watch mode
+pnpm run test:ui            # Run tests with UI
+pnpm run test:coverage      # Run tests with coverage report
+
+# Code Quality
+pnpm run lint               # Lint TypeScript files
+pnpm run lint:fix           # Lint and auto-fix issues
+pnpm run format             # Format code with Prettier
+pnpm run format:check       # Check code formatting
+pnpm run type-check         # Type check without emitting
+
+# Cleanup
+pnpm run clean              # Remove dist directory
+
+# Package Management
+pnpm run prepack            # Prepare package for publishing
+pnpm run release            # Build and publish to npm
+```
+
+### Build Process
+
+The build process generates pure JavaScript files without TypeScript declaration files:
+
+```bash
+# For development (includes source maps)
+pnpm run build:dev
+
+# For production (pure JavaScript)
+pnpm run build
+```
+
+### Building
+
+```bash
+# For development (includes source maps)
+pnpm run build:dev
+
+# For production (optimized size)
+pnpm run build
+pnpm run prepack            # Prepare package for publishing
+pnpm run release            # Build and publish to npm
+```
+
+### Package Structure
+
+```
+json-csv-toolkit/
+├── src/                    # Source TypeScript files
+│   ├── cli/               # Command-line interface
+│   ├── converters/        # Core conversion logic
+│   ├── types/             # TypeScript type definitions
+│   ├── utils/             # Utility functions
+│   └── index.ts           # Main entry point
+├── dist/                  # Built JavaScript files (generated)
+├── tests/                 # Test files
+├── examples/              # Usage examples
+└── docs/                  # Documentation files
+```
+
+**Badge Status:**
+```markdown
+![CI](https://github.com/manjushsh/json-csv-toolkit/workflows/CI/badge.svg)
+![Security](https://github.com/manjushsh/json-csv-toolkit/workflows/Security/badge.svg)
+![Release](https://github.com/manjushsh/json-csv-toolkit/workflows/Release/badge.svg)
+```
+
+### Publishing
+
+**Automated Publishing (Recommended):**
+1. Use the GitHub Actions workflow for version bumping:
+   - Go to Actions → "Version and Release" 
+   - Run workflow with desired version type (patch/minor/major)
+   - The workflow will automatically bump version, update changelog, and create release
+
+**Manual Publishing:**
+```bash
+# Quick release scripts
+pnpm run release:patch     # Patch version (1.0.0 → 1.0.1)
+pnpm run release:minor     # Minor version (1.0.0 → 1.1.0)  
+pnpm run release:major     # Major version (1.0.0 → 2.0.0)
+
+# Manual step-by-step
+npm version patch          # or minor, major
+pnpm run release
+
+# Dry run (test without publishing)
+pnpm run release:dry
+
+# Full manual process
+pnpm run build:prod
+npm publish
+```
+
+**Prerequisites for Publishing:**
+- NPM_TOKEN secret configured in GitHub repository settings
+- Maintainer access to the npm package
+- All CI checks passing
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
