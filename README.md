@@ -413,6 +413,6 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## Support
 
-- 📧 Email: support@json-csv-toolkit.com
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/json-csv-toolkit/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/your-username/json-csv-toolkit/discussions)
+- 📧 Email: <NA>
+- 🐛 Issues: [GitHub Issues](https://github.com/manjushsh/json-csv-toolkit/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/manjushsh/json-csv-toolkit/discussions)
