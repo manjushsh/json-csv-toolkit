@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "age": 30,
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "coordinates": {
+        "lat": 40.7128,
+        "lng": -74.0060
+      }
+    },
+    "hobbies": ["reading", "swimming", "coding"],
+    "isActive": true,
+    "joinDate": "2023-01-15T10:30:00Z",
+    "metadata": null
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "age": 25,
+    "address": {
+      "street": "456 Oak Ave",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zipCode": "90210",
+      "coordinates": {
+        "lat": 34.0522,
+        "lng": -118.2437
+      }
+    },
+    "hobbies": ["painting", "yoga"],
+    "isActive": false,
+    "joinDate": "2023-03-22T14:45:00Z",
+    "metadata": {
+      "source": "referral",
+      "campaign": "spring2023"
+    }
+  }
+]
